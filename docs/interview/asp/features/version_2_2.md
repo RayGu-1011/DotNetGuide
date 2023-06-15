@@ -1,0 +1,14 @@
+# ASP.NET Core 2.2 新特性
+ - **OpenAPI 分析器和约定**：支持在 ASP.NET Core MVC 中生成和直观呈现 OpenAPI 文档，支持使用 Web API 分析器和 Web API 约定来定义 API 的结构和行为。
+ - **问题详细信息支持**：支持使用 ProblemDetails 类来返回基于 RFC 7807 规范的错误详细信息，支持在具有 ApiControllerAttribute 特性的控制器中返回客户端错误代码的标准响应。
+ - **终结点路由**：支持使用新的终结点路由系统来改进请求的调度，支持使用新链接生成 API 成员和路由参数转换器。
+ - **运行状况检查**：支持使用运行状况检查服务来检测应用的运行状况，并提供自定义响应格式和策略，支持与 BeatPulse 项目集成来添加为众多常用系统和依赖项添加检查。
+ - **Kestrel 中的 HTTP/2**：支持使用 Kestrel 作为 HTTP/2 服务器，提高了请求的并行性和效率，支持标头压缩、单个连接上的完全多路复用流等。
+ - **Kestrel 配置**：支持使用 ConfigureKestrel 方法来配置 Kestrel 选项，解决了 IServer 注册顺序方面的问题。
+ - **IIS 进程内承载**：支持在 IIS 工作进程内托管 ASP.NET Core 应用，提供了性能和诊断提升。
+ - **SignalR Java 客户端**：支持使用 SignalR Java 客户端来连接到 ASP.NET Core SignalR Server，包括 Android 应用。
+ - **CORS 改进**：支持更严格地匹配 CORS 中间件策略，只允许与 WithHeaders 中声明的标头完全匹配的请求通过。
+ - **响应压缩**：支持使用 Brotli 压缩格式来压缩响应，提高了传输效率。
+ - **项目模板**：支持使用更新为 Bootstrap 4 和 Angular 6 的 Web 项目模板。
+ - **验证性能**：支持跳过对没有任何验证程序的模型的验证，提高了验证的速度和效率。
+ - **HTTP 客户端性能**：支持使用 SocketsHttpHandler 来提高 HTTP 客户端的性能

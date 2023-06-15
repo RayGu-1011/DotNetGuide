@@ -1,0 +1,17 @@
+# ASP.NET Core 2.0 新特性
+ - **Razor Pages**：支持使用基于页面的编码方式来构建 Web 应用，支持使用 @page 指令、模型绑定、过滤器、标记帮助程序等。
+ - **ASP.NET Core 元包**：支持使用 Microsoft.AspNetCore.All 元包来引用 ASP.NET Core 和 Entity Framework 团队生成和提供支持的所有包及其依赖项，简化了包选择和管理。
+ - **运行时存储**：支持使用 .NET Core 运行时存储来存储运行 ASP.NET Core 2.0 应用程序所需的所有运行时资产，减少了部署的大小和时间。
+ - **.NET Standard 2.0**：支持将 ASP.NET Core 2.0 包面向 .NET Standard 2.0，提高了与其他 .NET 实现的兼容性和互操作性。
+ - **配置更新**：支持将 IConfiguration 实例添加到服务容器，提供了更简单的配置访问方式。
+ - **日志记录更新**：支持在 Program.cs 文件中添加和配置日志记录提供程序，提供了更灵活的日志记录筛选和集成。
+ - **身份验证更新**：支持使用新的身份验证模型来简化使用 DI 配置身份验证的过程，支持使用 Azure AD B2C 来实现 Web 应用和 Web API 的身份验证和授权。
+ - **Identity 更新**：支持使用 Identity 生成安全的 Web API，支持使用 Microsoft 身份验证库 (MSAL) 获取用于访问 Web API 的访问令牌。
+ - **SPA 模板**：支持使用适用于 Angular、Aurelia、Knockout.js、React.js 及 React.js 和 Redux 的单页应用程序 (SPA) 项目模板，提供了更多的前端框架选择。
+ - **Kestrel 改进**：支持使用 Kestrel Web 服务器作为面向 Internet 的服务器，提供了更多的服务器约束配置选项，如客户端最大连接数、请求正文最大大小、请求正文最小数据速率等。
+ - **WebListener 已重命名为 HTTP.sys**：支持将 Microsoft.AspNetCore.Server.WebListener 和 Microsoft.Net.Http.Server 包合并为一个新包 Microsoft.AspNetCore.Server.HttpSys ，提高了命名空间的一致性。
+ - **增强了 HTTP 标头支持**：支持在返回 FileStreamResult 或 FileContentResult 时设置 ETag 或 LastModified 日期，支持处理范围请求标头和部分传输操作。
+ - **托管启动和 Application Insights**：支持在托管启动时自动启用 Application Insights ，提供了更好的应用程序监视和诊断能力。
+ - **自动使用防伪标记**：支持在所有表单中自动添加防伪标记，提高了应用程序的安全性。
+ - **自动预编译 Razor**：支持在发布应用程序时自动预编译 Razor 视图和页，提高了应用程序的启动时间和性能。
+ - **支持 C# 7.1**：支持在 ASP.NET Core 应用程序中使用 C# 7.1 的新特性，如异步主方法、默认文字表达式、模式匹配等。
