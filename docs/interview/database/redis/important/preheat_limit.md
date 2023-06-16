@@ -1,4 +1,11 @@
 ---
+title: Redis缓存预热、限流、降级、熔断
+editLink: true
+head:
+  - - meta
+    - name: description
+      content: Redis缓存预热、限流、降级、熔断
+layout: doc
 outline: deep
 ---
 # 缓存预热和限流

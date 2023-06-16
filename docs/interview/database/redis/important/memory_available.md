@@ -1,4 +1,11 @@
 ---
+title: Redis内存淘汰及回收机制
+editLink: true
+head:
+  - - meta
+    - name: description
+      content: Redis内存淘汰及回收机制,包括lfu,lru,lru数据结构,lru数据结构
+layout: doc
 outline: deep
 ---
 # Redis内存兜底策略——内存淘汰及回收机制

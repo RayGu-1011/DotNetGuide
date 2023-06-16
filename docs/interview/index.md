@@ -43,10 +43,10 @@ outline: deep
 
 #### MySQL
 
-- [MySQL面试题（基础篇一）](/interview/database/MySQL/questions_1)
-- [MySQL面试题（基础篇二）](/interview/database/MySQL/questions_2)
-- [MySQL面试题（引擎&事务篇）](/interview/database/MySQL/questions_3)
-- [MySQL面试题（索引篇）](/interview/database/MySQL/questions_4)
+- [MySQL面试题（基础篇一）](/interview/database/mysql/questions_1)
+- [MySQL面试题（基础篇二）](/interview/database/mysql/questions_2)
+- [MySQL面试题（引擎&事务篇）](/interview/database/mysql/questions_3)
+- [MySQL面试题（索引篇）](/interview/database/mysql/questions_4)
 
 ##### MySQL核心知识
 - [慢查询日志详解](/interview/database/mysql/important/querylog)

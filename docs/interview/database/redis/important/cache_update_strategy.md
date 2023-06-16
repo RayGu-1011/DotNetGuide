@@ -1,4 +1,11 @@
 ---
+title: Redis缓存更新策略
+editLink: true
+head:
+  - - meta
+    - name: description
+      content: Redis缓存更新策略，包括Cache Aside,Read/Write Through,Write Behind,Refresh-Ahead
+layout: doc
 outline: deep
 ---
 

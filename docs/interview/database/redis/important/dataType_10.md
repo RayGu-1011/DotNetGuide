@@ -1,15 +1,10 @@
 ---
-title: Docs with VitePress
-description: VitePress
-titleTemplate: Vite & Vue powered static site generator
+title: Redis数据结构-stream,geospatial,bitmap,bitfield,hyperloglog
 editLink: true
 head:
   - - meta
     - name: description
-      content: hello
-  - - meta
-    - name: keywords
-      content: super duper SEO
+      content: Redis数据结构底层原理，包括stream,geospatial,bitmap,bitfield,hyperloglog
 layout: doc
 outline: deep
 ---

@@ -1,4 +1,11 @@
 ---
+title: Redis缓存击穿、穿透、雪崩
+editLink: true
+head:
+  - - meta
+    - name: description
+      content: Redis缓存击穿、穿透、雪崩及解决方案
+layout: doc
 outline: deep
 ---
 

@@ -1,4 +1,11 @@
 ---
+title: MySQL面试题-引擎与事务
+editLink: true
+head:
+  - - meta
+    - name: description
+      content: MySQL面试题，MySQL引擎、事务、乐观锁、悲观锁
+layout: doc
 outline: deep
 ---
 

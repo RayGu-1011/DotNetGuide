@@ -1,4 +1,11 @@
 ---
+title: MySQL面试题
+editLink: true
+head:
+  - - meta
+    - name: description
+      content: MySQL面试题，MySQL基础知识及简单sql语句
+layout: doc
 outline: deep
 ---
 

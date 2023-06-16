@@ -1,4 +1,11 @@
 ---
+title: MySQL面试题-索引
+editLink: true
+head:
+  - - meta
+    - name: description
+      content: MySQL面试题，索引、索引底层原理、索引设计与优化
+layout: doc
 outline: deep
 ---
 # MySQL面试题（索引篇）

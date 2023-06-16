@@ -2,9 +2,11 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: "DotNetGuide",
-  description: "DotNetGuide",
+  description: "DotNetGuide - 为国内喜欢.Net Core的Coder提供一个全职业生涯的技术交流、服务咨询网站",
+  titleTemplate: ".Net面试|技术交流",
   lastUpdated: true,
   cleanUrls: true,
+  base:'/',
   themeConfig: {
     search: {
       provider: 'local'

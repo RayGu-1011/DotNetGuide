@@ -1,4 +1,11 @@
 ---
+title: Redis持久化策略
+editLink: true
+head:
+  - - meta
+    - name: description
+      content: Redis持久化策略,包括aof,rdb及aof与rdb混合模式
+layout: doc
 outline: deep
 ---
 

@@ -1,8 +1,15 @@
 ---
+title: MySQL面试题
+editLink: true
+head:
+  - - meta
+    - name: description
+      content: MySQL面试题，MySQL基础知识及简单sql优化
+layout: doc
 outline: deep
 ---
 
-# MySQL面试题（基础篇一）
+# MySQL面试题（基础篇二）
 
 ## 基础
 

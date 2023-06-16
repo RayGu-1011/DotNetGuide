@@ -1,15 +1,10 @@
 ---
-title: Docs with VitePress
-description: VitePress
-titleTemplate: Vite & Vue powered static site generator
+title: Redis数据结构-string,hash,list,set,zset
 editLink: true
 head:
   - - meta
     - name: description
-      content: hello
-  - - meta
-    - name: keywords
-      content: super duper SEO
+      content: Redis数据结构底层原理，包括string,hash,list,set,zset类型
 layout: doc
 outline: deep
 ---
@@ -21,7 +16,6 @@ Redis 是一个开源的高性能键值数据库，它支持多种数据类型�
 - list（列表）
 - set（集合）
 - zset（有序集合）
-
 
 ## String
 string 是 Redis 最基本的数据类型，它可以存储任意类型的数据，比如文本、数字、图片或者序列化的对象。一个 string 类型的键最大可以存储 512 MB 的数据。
@@ -51,14 +45,22 @@ embstr 结构存储小于等于44个字节的字符串，embstr 每次开辟64�
 - 前19个byte用于存储embstr 结构
 - 中间的44个byte存储数据
 - 最后为`\0`符号
-![An image](./img/redis_encoding_embstr.png)
+
+![](./img/redis_encoding_embstr.png)
+
 #### raw结构
-![An image](./img/redis_encoding_raw.png)
+
+raw结构如下：
+
+![](./img/redis_encoding_raw.png)
+
 #### embstr和raw的转换
+
 在存储字符串的时候，redis会根据数据的长度判断使用哪种结构
 - 如果长度小于等于44个字节，就会选择embstr 结构
 - 如果长度大于44个byte，就会选择raw结构
-![An image](./img/redis_string_embstrToraw.png)
+
+![](./img/redis_string_embstrToraw.png)
 
 ```
 127.0.0.1:6379> object encoding str
@@ -86,6 +88,7 @@ Hash类型的底层实现有三种：
 - `ziplist`：压缩列表，当**hash**达到一定的阈值时，会自动转换为`hashtable`结构
 - `listpack`：紧凑列表，在Redis7.0之后，`listpack`正式取代`ziplist`。同样的，当**hash**达到一定的阈值时，会自动转换为`hashtable`结构
 - `hashtable`：哈希表，类似map
+
 ### 应用场景
 
 hash 类型的应用场景主要是存储对象，比如：
@@ -113,7 +116,9 @@ Redis在存储hash结构的数据，为了达到内存和性能的平衡，也�
 ##### ziplist结构
 
 ziplist是一种紧凑的链表结构，它将所有的字段和值顺序地存储在一块连续的内存中。
-![An image](./img/redis_encoding_ziplist.png)
+
+![](./img/redis_encoding_ziplist.png)
+
 **Redis中ziplist源码**
 
 ```C
@@ -127,7 +132,9 @@ typedef struct {
 ```
 
 ##### listpack结构
-![An image](./img/redis_encoding_listpack.png)
+
+![](./img/redis_encoding_listpack.png)
+
 ##### zipList的连锁更新问题
 
 ziplist的每个entry都包含previous_entry_length来记录上一个节点的大小，长度是1个或5个byte：
@@ -137,12 +144,13 @@ ziplist的每个entry都包含previous_entry_length来记录上一个节点的�
 
 假设，现有有N个连续、长度为250~253个byte的entry，因此entry的previous_entry_length属性占用1个btye
 
-![An image](./img/redis_ziplist_update.png)
+![](./img/redis_ziplist_update.png)
 
 当第一节长度大于等于254个bytes，导致第二节**previous_entry_length**变为5个bytes，第二节的长度由250变为254。而第二节长度的增加必然会影响第三节的**previous_entry_length**。ziplist这种特殊套娃的情况下产生的连续多次空间扩展操作成为连锁更新。新增、删除都可能导致连锁更新的产生。
+
 ##### listpack是如何解决的
 
-![An image](./img/redis_encoding_listpack.png)
+![](./img/redis_encoding_listpack.png)
 
 1. 由于ziplist需要倒着遍历，所以需要用previous_entry_length记录前一个entry的长度。而listpack可以通过total_bytes和end计算出来。所以previous_entry_length不需要了。
 2. listpack 的设计彻底消灭了 ziplist 存在的级联更新行为，元素与元素之间完全独立，不会因为一个元素的长度变长就导致后续的元素内容会受到影响。
@@ -151,8 +159,7 @@ ziplist的每个entry都包含previous_entry_length来记录上一个节点的�
 
 hashTable是一种散列表结构，它将字段和值分别存储在两个数组中，并通过哈希函数计算字段在数组中的索引
 
-![An image](./img/redis_encoding_hashTable.png)
-
+![](./img/redis_encoding_hashTable.png)
 
 **Redis中hashTable源码**
 
@@ -184,7 +191,7 @@ typedef struct dictEntry {
 
 #### ziplist和hashTable的转换
 
-![An image](./img/redis_hash_ziplistTohashTable.png)
+![](./img/redis_hash_ziplistTohashTable.png)
 
 
 ```Bash
@@ -212,7 +219,7 @@ typedef struct dictEntry {
 
 ##### rehash 步骤
 
-![An image](./img/redis_hashtable_rehash.png)
+![](./img/redis_hashtable_rehash.png)
 
 扩展哈希和收缩哈希都是通过执行`rehash`来完成，这其中就涉及到了空间的分配和释放，主要经过以下五步：
 
@@ -257,7 +264,7 @@ list 类型的应用场景主要是实现队列和栈，比如：
 
 在`Redis3.2`之前，`linkedlist`和`ziplist`两种编码可以选择切换，它们之间的转换关系如图
 
-![An image](./img/redis_list_ziplistTolinkedList.png)
+![](./img/redis_list_ziplistTolinkedList.png)
 
 同样地，ziplist转为linkedlist的条件可在redis.conf配置
 
@@ -270,7 +277,7 @@ list-max-ziplist-value 64
 
 `quicklist`存储了一个双向列表，每个列表的节点是一个`ziplist`，所以实际上`quicklist`并不是一个新的数据结构，它就是`linkedlist`和`ziplist`的结合，然后被命名为快速列表。
 
-![An image](./img/redis_encoding_quicklist_linkedList.png)
+![](./img/redis_encoding_quicklist_linkedList.png)
 
 ziplist内部entry个数可在redis.conf配置
 
@@ -300,7 +307,7 @@ list-compress-depth 0
 
 和Hash结构一样，因为`ziplist`有连锁更新问题，`redis7.0`将`ziplist`替换为`listpack`，下面是新quickList的结构图
 
-![An image](./img/redis_encoding_quicklist_listpack.png)
+![](./img/redis_encoding_quicklist_listpack.png)
 
 **Redis中listpack源码**
 
@@ -386,7 +393,7 @@ set 类型的应用场景主要是利用集合的特性，比如：
 
 `intset`是一种紧凑的数组结构，它只保存`int`类型的数据，它将所有的元素按照从小到大的顺序存储在一块连续的内存中。`intset`会根据传入的数据大小，`encoding`分为`int16_t`、`int32_t`、`int64_t`
 
-![An image](./img/redis_encoding_IntSet.png)
+![](./img/redis_encoding_IntSet.png)
 
 ```Bash
 127.0.0.1:6379> sadd set 123
@@ -437,7 +444,7 @@ hashtable 的**空间开销**高是因为它需要预先分配一个固定大小
 
 举例说明，假设有一个大小为8的`hashtable`，使用取模运算作为散列函数，即h(k) = k mod 8。现在有四个键：5，13，21，29，它们都被散列到`索引1`处
 
-![An image](./img/redis-hashtable.png)
+![](./img/redis-hashtable.png)
 
 这就是一个碰撞的例子，因为四个键都映射到了同一个索引。这种情况可能是由于以下原因造成的：
 
@@ -522,7 +529,7 @@ zset 类型的应用场景主要是利用分数和排序的特性，比如：
 
 跳跃表是一种随机化的数据结构，实质就是一种可以进行二分查找的有序链表。跳跃表在原有的有序链表上面增加了多级索引，通过索引来实现快速查找。跳跃表不仅能提高搜索性能，同时也可以提高插入和删除操作的性能
 
-![An image](./img/skiplist.png)
+![](./img/skiplist.png)
 
 
 跳跃表相比于其他平衡树结构，有以下几个优点和缺点：
